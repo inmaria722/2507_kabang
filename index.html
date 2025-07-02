@@ -736,9 +736,19 @@
         }
 
         /* 로고 */
+        header .logo_wrap {
+            transition: all .3s;
+        }
+
+        header .logo_wrap.is_scroll {
+            visibility: hidden;
+            opacity: 0;
+        }
+
         header .logo_wrap a {
             width: 116px;
         }
+
 
         header .logo_wrap a>img {
             width: 100%;
@@ -1699,6 +1709,22 @@
     </style>
 
     <script>
+        /*헤더 스크립트 시작*/
+        function logoShowAndHide() {
+            $(window).scroll(function(){
+                let $this = $(this);
+                let scTop = $this.scrollTop();
+
+                if (scTop > 0) {
+                    $(".logo_wrap").addClass('is_scroll');
+                } else {
+                    $(".logo_wrap").removeClass('is_scroll');
+                }
+            });
+        }
+
+        logoShowAndHide();
+
         /* 발견되면 활성화시키는 라이브러리 시작 */
         function ActiveOnVisible__init() {
             $('.active-on-visible').each(function(index, node) {
